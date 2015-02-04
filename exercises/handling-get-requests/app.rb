@@ -90,7 +90,17 @@ def quotes_by(author)
   end
 end
 
-get "/" do
+get '/' do
   @quotes = []
+  erb :home
+end
+
+# get '/search' do
+#   @quotes = search(params[:terms])
+#   erb :home
+# end
+
+get '/search' do
+  @quotes = search(params[:terms])
   erb :home
 end

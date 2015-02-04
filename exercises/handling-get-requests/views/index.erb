@@ -3,17 +3,11 @@
     <title><%= @title %></title>
   </head>
   <body>
-    Hello homies!
-    <p/><p/>
-    <%= time_of_day_message %>
-    <a href="http://codeunion.io">CodeUnion</a>
-    <p/><p/>
-
-    <cite>Created by <%= creator %></cite>
-
+    Hello!
+    <%= "ISLANDS" if params['text'] == 'islands' %>
     <hr>
     <footer>
-      <%= erb :params_info if DEBUG %>
+      <%= erb :params_info %>
     </footer>
   </body>
 </html>

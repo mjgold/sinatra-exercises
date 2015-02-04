@@ -1,26 +1,6 @@
 require 'sinatra'
 
-DEBUG = true
-
-puts settings.environment
-
-def creator
-  'mark!'
-end
-
-def time_of_day_message
-  now = Time.now
-  if now.hour > 15
-    "it's getting late..."
-  else
-    'happy day'
-  end
-end
-
 get '/' do
-  @name = 'Bob'
-  @title = 'Welcome to Inspector'
-
   erb :index
 end
 
