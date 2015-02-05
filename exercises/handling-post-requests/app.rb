@@ -6,6 +6,11 @@ get '/' do
   erb :recipes
 end
 
+get '/recipes/:recipe_id/edit' do
+  @recipe = Recipe.get(params[:recipe_id])
+  erb :recipe_form
+end
+
 post '/recipes' do
   @recipe = Recipe.create(
                 title: params[:title],
@@ -13,7 +18,6 @@ post '/recipes' do
                 description: params[:description],
                 instructions: params[:instructions])
   @recipes = Recipe.all
-
   erb :recipes
 end
 

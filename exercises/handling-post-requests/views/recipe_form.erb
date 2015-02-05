@@ -1,14 +1,16 @@
 <form name="create_recipe" action='/recipes' method=POST>
-  Create a new recipe!
+  <h2><%= @recipe ? 'Edit recipe' : 'Create a new recipe' %></h2>
   <p/>
   <p/>Title
-  <br/><input type='text' name='title'>
+  <br/><input type='text' name='title' value='<%= @recipe.title if @recipe %>'>
   <p/>Created By
-  <br/><input type='text' name='created_by'>
+  <br/><input type='text' name='created_by' value='<%= @recipe.created_by if @recipe %>'>
   <p/>Description
-  <br/><input type='text' name='description'>
+  <br/><input type='text' name='description' value='<%= @recipe.description if @recipe %>'>
   <p/>Instructions
-  <br/><input type='text' name='instructions'>
+  <br/><input type='text' name='instructions' value='<%= @recipe.instructions if @recipe %>'>
   <p/>
-  <input type='submit' value='Create'>
+  <input type='submit' value=
+  <%= @recipe ? 'Edit' : 'Create' %>
+  >
 </form>
