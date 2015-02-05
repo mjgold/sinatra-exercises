@@ -12,7 +12,7 @@ get '/recipes/:recipe_id/edit' do
 end
 
 post '/recipes' do
-  @recipe = Recipe.create(
+  Recipe.create(
                 title: params[:title],
                 created_by: params[:created_by],
                 description: params[:description],

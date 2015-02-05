@@ -11,6 +11,7 @@
   <br/><input type='text' name='instructions' value='<%= @recipe.instructions if @recipe %>'>
   <p/>
   <input type='submit' value=
-  <%= @recipe ? 'Edit' : 'Create' %>
+    <%= @recipe ? 'Edit' : 'Create' %>
   >
+  <%= "<a href='/'>Back to all recipes</a>" if @recipe %>
 </form>
