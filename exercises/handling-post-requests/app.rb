@@ -7,17 +7,13 @@ get '/' do
 end
 
 post '/recipes' do
-  puts params
-  # title = params[:title]
-  # created_by = params[:created_by]
-  # description = params[:description]
-  # instructions = params[:instructions]
-
-  @recipe = Recipe.create(title: params[:title],
+  @recipe = Recipe.create(
+                title: params[:title],
                 created_by: params[:created_by],
                 description: params[:description],
                 instructions: params[:instructions])
-#  redirect to("/recipes/#{@recipe.id}")
+  @recipes = Recipe.all
+
   erb :recipes
 end
 
