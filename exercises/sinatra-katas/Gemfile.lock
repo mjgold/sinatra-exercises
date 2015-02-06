@@ -88,6 +88,7 @@ PLATFORMS
 DEPENDENCIES
   datamapper
   dm-sqlite-adapter
+  rack (= 1.5.2)
   rerun
   sinatra
   sqlite3

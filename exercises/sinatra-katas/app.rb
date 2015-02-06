@@ -1,3 +1,6 @@
+### Questions
+# why rerun -x rackup not working?
+
 require 'sinatra'
 require 'data_mapper'
 
@@ -23,57 +26,73 @@ DataMapper.auto_upgrade!
 # Update    | PUT
 # Destroy   | DELETE
 
-#CREATE 
+#CREATE
 
 # This will render an empty form so the user can enter
 # the information to create a new tweet
 get("/tweets/new") do
-  # build a 'shell' Tweet object that can be sent to the browser
-  # render the :new template
+  @tweet = Tweet.new
+  erb :new
 end
 
 # CRUD Verb: Create
 # HTTP Method: POST
- 
+
 # This is the endpoint our "create form" submits to using
 # the HTTP POST method.
 post("/tweets") do
-  # create a new tweet object and populate it with data from params hash
-  # redirect the user to "/" or render :new if the record didn't save
+  puts params
+  # @tweet = Tweet.create(
+  #                      params['tweet']['status'],
+  #                      params['tweet']['user']
+  #                      )
+  @tweet = Tweet.create(params[:tweet])
+
+  if @tweet.saved?
+    redirect '/'
+  else
+    erb :new
+  end
 end
 
 # READ
 
 get("/") do
-  # query the db for all tweets
-  # render the index template
+  @tweets = Tweet.all
+  erb :index
 end
 
 get("/tweets/:id") do
-  # query the db for the id of the requested tweet
-  # render the relevant template
+  @tweet = Tweet.get(params[:id]) # query the db for the id of the requested tweet
+  erb :show
 end
 
-# UPDATE 
+# UPDATE
 
 # This renders the form used to edit a specific tweet
-get("/tweets/:id/edit") do
-  # query the db for the requested tweet
-  # render the edit template
+get("/tweets/edit/:id") do
+  @tweet = Tweet.get(params[:id])
+  erb :edit
 end
 
 # This is the endpoint our "edit form" submits to using
 # the HTTP PUT method.
 put("/tweets/:id") do
-  # query the db for the requested tweet
-  # update the tweet's attributes in the db
-  # redirect the user to "/" or render edit if the record didn't save
+  @tweet = Tweet.get(params[:id])
+  @tweet.attributes = params[:tweet]
+  @tweet.save
+
+  if @tweet.saved?
+    redirect '/'
+  else
+    erb :edit
+  end
 end
 
 # DESTROY
 
 delete("/tweets/:id") do
-  # query the db for the rquested tweet
-  # destroy the tweet
-  # redirect the user back to the root, "/"
+  @tweet = Tweet.get(params[:id])
+  @tweet.destroy
+  redirect '/'
 end
