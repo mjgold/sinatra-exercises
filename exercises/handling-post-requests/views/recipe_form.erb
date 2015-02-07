@@ -1,7 +1,6 @@
 <!-- post_or_put_route(@recipe, '/recipes') -->
 
-<%= puts flash %>
-<%= flash[:notice] unless flash.empty? %>
+<font color="blue"><%= flash[:notice] unless flash.empty? %></font>
 
 <form name="create_recipe" action='<%= @recipe.new? ? "/recipes" : "/recipes/#{@recipe.id}" %>'
   method=POST>

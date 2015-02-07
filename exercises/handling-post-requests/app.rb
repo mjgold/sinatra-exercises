@@ -17,6 +17,7 @@ post '/recipes' do
                 description: params[:description],
                 instructions: params[:instructions])
   @recipes = Recipe.all
+  flash[:notice] = "Recipe created successfully!"
   redirect ("/recipes/#{@recipe.id}")
 end
 
