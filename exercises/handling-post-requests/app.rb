@@ -48,4 +48,23 @@ helpers do
   def post_or_put_route(object, prefix)
     object.new? ? prefix : prefix + "/#{object.id}"
   end
+
+  def submit_button(object)
+    puts object.inspect
+    button = "<input type='submit' value="
+    if object.new?
+      button += "'Create'>"
+    else
+      button += "'Edit'>"
+    end
+    button
+  end
+
+  def input_tag_for_put(object)
+    "<input type='hidden' name='_method' value='put'>" unless object.new?
+  end
+
+  def back_to_index
+    "<a href='/'>Back to all recipes</a>"
+  end
 end
