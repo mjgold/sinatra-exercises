@@ -2,7 +2,7 @@
 
 <!-- post_or_put_route(@recipe, '/recipes') -->
 <form name="create_recipe" action='<%= @recipe.new? ? "/recipes" : "/recipes/#{@recipe.id}" %>'
-  method=POST>
+  method="POST">
 
   <h2><%= @recipe.new? ? 'Create a new recipe' : 'Edit recipe' %></h2>
   <p/>
@@ -18,5 +18,10 @@
 
   <%= submit_button(@recipe) %>
   <%= input_tag_for_put(@recipe) %>
-  <%= back_to_index %>
 </form>
+
+<%= eval('<form name="destroy_recipe" action="/recipes/#{@recipe.id}" method="POST">') %>
+  <input type="hidden" name="_method=" value="delete">
+  <input type="submit" value="Delete">
+</form>
+  <%= back_to_index %>

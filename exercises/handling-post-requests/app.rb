@@ -43,6 +43,13 @@ get '/recipes/:recipe_id' do
   end
 end
 
+delete '/recipes/:recipe_id' do
+  recipe = Recipe.get(params[:recipe_id])
+  recipe.destroy
+  flash[:notice] = "Defenseless recipe deleted. :("
+  redirect("/")
+end
+
 ### WHY CAN'T REFERENCE THIS?
 helpers do
   def post_or_put_route(object, prefix)

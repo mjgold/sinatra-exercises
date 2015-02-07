@@ -1,4 +1,7 @@
 <h1>Granny Goodnesses Greatest Recipes</h1>
+
+<font color="blue"><%= flash[:notice] unless flash.empty? %></font>
+
 <% @recipes.each do |recipe| %>
   <article>
     <h3><a href="/recipes/<%=recipe.id%>"><%= recipe.title %></a></h3>
