@@ -66,8 +66,9 @@ helpers do
   end
 
   def hidden_input_tag(method)
-    raise ArgumentError, "#{method} value is not valid, can only be 'put' or 'delete'" /
-  unless method == "put" || method == "delete"
+    unless method =~ /(put)|(delete)/
+      fail ArgumentError, "#{method} value is not valid, can only be 'put' or 'delete'"
+    end
 
     "<input type='hidden' name='_method' value='#{method}'>"
   end
