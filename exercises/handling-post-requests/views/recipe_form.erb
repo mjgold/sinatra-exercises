@@ -1,7 +1,6 @@
 <font color="blue"><%= flash[:notice] unless flash.empty? %></font>
 
-<!-- post_or_put_route(@recipe, '/recipes') -->
-<form name="create_recipe" action='<%= @recipe.new? ? "/recipes" : "/recipes/#{@recipe.id}" %>'
+<form name="create_recipe" action="<%= post_or_put_route(@recipe, '/recipes') %>"
   method="POST">
 
   <h2><%= @recipe.new? ? 'Create a new recipe' : 'Edit recipe' %></h2>
@@ -16,8 +15,8 @@
   <br/><input type='text' name='instructions' value='<%= @recipe.instructions if @recipe %>'>
   <p/>
 
+  <%= hidden_input_tag('put') unless @recipe.new? %>
   <%= submit_button(@recipe) %>
-  <%= input_tag_for_put(@recipe) %>
 </form>
 
 <% unless @recipe.new? %>

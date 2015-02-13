@@ -50,14 +50,12 @@ delete '/recipes/:recipe_id' do
   redirect("/")
 end
 
-### WHY CAN'T REFERENCE THIS?
 helpers do
   def post_or_put_route(object, prefix)
     object.new? ? prefix : prefix + "/#{object.id}"
   end
 
   def submit_button(object)
-    puts object.inspect
     button = "<input type='submit' value="
     if object.new?
       button += "'Create'>"
@@ -67,8 +65,11 @@ helpers do
     button
   end
 
-  def input_tag_for_put(object)
-    "<input type='hidden' name='_method' value='put'>" unless object.new?
+  def hidden_input_tag(method)
+    raise ArgumentError, "#{method} value is not valid, can only be 'put' or 'delete'" /
+  unless method == "put" || method == "delete"
+
+    "<input type='hidden' name='_method' value='#{method}'>"
   end
 
   def back_to_index
