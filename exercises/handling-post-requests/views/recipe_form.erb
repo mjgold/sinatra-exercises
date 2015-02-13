@@ -21,7 +21,7 @@
 </form>
 
 <%= unless @recipe.new? %>
-  <%= <form name="destroy_recipe" action="/recipes/#{@recipe.id}" method="POST"> %>
+  <form name="destroy_recipe" action='<%= "/recipes/#{@recipe.id}" %>' method="POST">
     <input type="hidden" name="_method=" value="delete">
     <input type="submit" value="Delete">
   </form>
