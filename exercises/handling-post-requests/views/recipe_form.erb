@@ -20,10 +20,10 @@
   <%= input_tag_for_put(@recipe) %>
 </form>
 
-<%= unless @recipe.new? %>
+<% unless @recipe.new? %>
   <form name="destroy_recipe" action='<%= "/recipes/#{@recipe.id}" %>' method="POST">
-    <input type="hidden" name="_method=" value="delete">
+    <input type="hidden" name="_method" value="delete">
     <input type="submit" value="Delete">
   </form>
-<%= end %>
+<% end %>
   <%= back_to_index %>
